@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Orbit : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Orbit : MonoBehaviour
     public bool RotateClockwise;
     private float rotSpeed;
     private float timer = 0;
+    private int score = 0;
+    private int planetNumber;
 
         // Start is called before the first frame update
     void Start()
@@ -20,16 +23,27 @@ public class Orbit : MonoBehaviour
             centerPoint = sun.transform;
 
             this.transform.SetParent(sun.transform);
-
-            this.setRadius(20.0f * sun.transform.childCount);
+            planetNumber = sun.transform.childCount;
+            this.setRadius(20.0f * planetNumber);
             
-            this.rotSpeed = 20.0f / sun.transform.childCount;
+            this.rotSpeed = 20.0f / planetNumber;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("We are in update for planets" + timer, null);
+        if(timer >= 2.0f *Mathf.PI) {
+
+            if(PlayerPrefs.HasKey("Score")){
+                score = PlayerPrefs.GetInt("Score");
+                PlayerPrefs.SetInt("Score", score + planetNumber);
+                //Debug.Log("Score updated " + score + 1, null);
+            }
+        }
+        timer %= 2.0f * Mathf.PI;
+
         timer += Time.deltaTime * rotSpeed * speedScaler;
         Rotate();
         transform.LookAt(centerPoint);
