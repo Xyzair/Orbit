@@ -33,7 +33,6 @@ public class Orbit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("We are in update for planets" + timer, null);
         if(timer >= 2.0f *Mathf.PI) {
 
             if(PlayerPrefs.HasKey("Score")){
