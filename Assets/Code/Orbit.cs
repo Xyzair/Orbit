@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class Orbit : MonoBehaviour
 {
+    public float radius = 20f;
     public float xSpread;
     public float zSpread;
     public float yOffset;
@@ -24,25 +25,25 @@ public class Orbit : MonoBehaviour
 
             this.transform.SetParent(sun.transform);
             planetNumber = sun.transform.childCount;
-            this.setRadius(20.0f * planetNumber);
+            this.setRadius(radius * planetNumber);
             
-            this.rotSpeed = 20.0f / planetNumber;
+            this.rotSpeed = radius / planetNumber;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(timer >= 2.0f *Mathf.PI) {
+        if(timer >= 2.0f * Mathf.PI) {
 
             if(PlayerPrefs.HasKey("Score")){
                 score = PlayerPrefs.GetInt("Score");
                 PlayerPrefs.SetInt("Score", score + planetNumber);
                 //Debug.Log("Score updated " + score + 1, null);
             }
+            timer %= 2.0f * Mathf.PI;
         }
-        timer %= 2.0f * Mathf.PI;
-
+        
         timer += Time.deltaTime * rotSpeed * speedScaler;
         Rotate();
         transform.LookAt(centerPoint);
