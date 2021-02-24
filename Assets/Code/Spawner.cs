@@ -12,6 +12,10 @@ public class Spawner : MonoBehaviour
     void Start () {
 		Button btn = yourButton.GetComponent<Button>();
 		btn.onClick.AddListener(buttonCommand);
+
+        for(int  i = 0; i < DM.getPlanets(); i++){
+            summon();
+        }
 	}
 
     // Update is called once per frame
