@@ -5,9 +5,9 @@ using UnityEngine.UI;
 using DM = DataManagement;
 
 
-public class Score : MonoBehaviour
+public class Money : MonoBehaviour
 {
-    public Text scoreText;
+    public Text moneyText;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +18,7 @@ public class Score : MonoBehaviour
     void Update()
     {
         string moneyString = "Money: " + DM.getMoney();
-        scoreText.text = moneyString;
-        //Debug.Log("Changed " + moneyString, scoreText);
+        moneyText.text = moneyString;
+        //Debug.Log("Changed " + moneyString, moneyText);
     }
 }
