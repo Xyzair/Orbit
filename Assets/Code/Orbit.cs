@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using DM = DataManagement;
 
 public class Orbit : MonoBehaviour
 {
@@ -36,11 +37,7 @@ public class Orbit : MonoBehaviour
     {
         if(timer >= 2.0f * Mathf.PI) {
 
-            if(PlayerPrefs.HasKey("Score")){
-                score = PlayerPrefs.GetInt("Score");
-                PlayerPrefs.SetInt("Score", score + planetNumber);
-                //Debug.Log("Score updated " + score + 1, null);
-            }
+            DM.setMoney (DM.getMoney() + 1 * planetNumber);
             timer %= 2.0f * Mathf.PI;
         }
         
