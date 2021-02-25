@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using DM = DataManagement;
 
@@ -13,7 +13,6 @@ public class Orbit : MonoBehaviour
     public bool RotateClockwise;
     private float rotSpeed;
     private float timer = 0;
-    private int score = 0;
     private int planetNumber;
 
         // Start is called before the first frame update
@@ -37,7 +36,7 @@ public class Orbit : MonoBehaviour
     {
         if(timer >= 2.0f * Mathf.PI) {
 
-            DM.setMoney (DM.getMoney() + 1 * planetNumber);
+            DM.setMoney(DM.getMoney() + 1 * planetNumber * planetNumber );
             timer %= 2.0f * Mathf.PI;
         }
         
